@@ -1,4 +1,6 @@
 const path = require('path');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 
 module.exports = {
   entry: "./src/index", // string | object | array
@@ -17,10 +19,19 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js?$/,
+      exclude: /node_modules\/(?!(@polymer)\/).*/,
       loader: 'babel-loader',
       query: {
         presets: ['es2015']
       }
     }]
-  }
+  },
+  resolve: {
+      alias: {
+        'time-stamp': 'time-stamp'
+      }
+  },
+    plugins: [new BundleAnalyzerPlugin({
+        analyzerPort: 9999
+    })]
 }
