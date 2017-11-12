@@ -26,11 +26,10 @@ module.exports = {
       }
     }]
   },
-  resolve: {
-      alias: {
-        'time-stamp': 'time-stamp'
-      }
-  },
+    resolve: {
+        symlinks: false,
+        modules: [path.resolve('node_modules')],
+    },
     plugins: [new BundleAnalyzerPlugin({
         analyzerPort: 9999
     })]
